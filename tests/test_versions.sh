@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------------
-# test_versions.sh  –  Run test_run_pretty.sh under several Bash versions
+# tests/test_versions.sh  –  Run tests/test_run_pretty.sh under several Bash versions
 #
-#   bash test_versions.sh                    # all supported versions
-#   bash test_versions.sh 4.2 5.3            # only these versions
-#   bash test_versions.sh --runs 3 --jobs 4  # repeat each 3 times, 4 at once
+#   bash tests/test_versions.sh                    # all supported versions
+#   bash tests/test_versions.sh 4.2 5.3            # only these versions
+#   bash tests/test_versions.sh --runs 3 --jobs 4  # repeat each 3 times, 4 at once
 #
 # Uses the official `bash:<version>` Docker images (pulled on first use).
 # Options:
@@ -13,9 +13,9 @@
 # ------------------------------------------------------------------------------
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=run_pretty.sh
-source "${SCRIPT_DIR}/run_pretty.sh"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# shellcheck source=SCRIPTDIR/../run_pretty.sh
+source "${ROOT_DIR}/run_pretty.sh"
 
 DEFAULT_VERSIONS=(4.2 4.3 4.4 5.0 5.1 5.2 5.3)
 
@@ -77,8 +77,8 @@ main() {
                 title+=" #${run}"
             fi
             rp_add --title "${title}" --hide-cmd \
-                docker run --rm -v "${SCRIPT_DIR}:/w:ro" -w /w \
-                "bash:${version}" bash test_run_pretty.sh
+                docker run --rm -v "${ROOT_DIR}:/w:ro" -w /w \
+                "bash:${version}" bash tests/test_run_pretty.sh
         done
     done
 

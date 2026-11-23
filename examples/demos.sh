@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------------
-# demos.sh  –  A tour of run_pretty features
+# examples/demos.sh  –  A tour of run_pretty features
 #
-#   bash demos.sh           # run every demo
-#   bash demos.sh 3 5       # run only demos 3 and 5
+#   bash examples/demos.sh           # run every demo
+#   bash examples/demos.sh 3 5       # run only demos 3 and 5
 # ------------------------------------------------------------------------------
 
 # SC2016: single-quoted bodies below are `bash -c` scripts; expansion is meant
@@ -13,7 +13,7 @@
 set -euo pipefail
 
 # shellcheck source=/dev/null
-source "$(dirname "${BASH_SOURCE[0]}")/run_pretty.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../run_pretty.sh"
 
 # -- Demo registry -------------------------------------------------------------
 demo_1_success() {

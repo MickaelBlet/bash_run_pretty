@@ -90,10 +90,10 @@ rp_reset   # clear the registry (rp_run clears it when done)
 ## Demos and tests
 
 ```bash
-bash demos.sh          # run every demo
-bash demos.sh 3 14     # run only demos 3 and 14
-bash test_run_pretty.sh
-bash test_versions.sh [--runs N] [--jobs N] [VERSION...]   # suite on Bash 4.2 → 5.3 (Docker)
+bash examples/demos.sh          # run every demo
+bash examples/demos.sh 3 14     # run only demos 3 and 14
+bash tests/test_run_pretty.sh
+bash tests/test_versions.sh [--runs N] [--jobs N] [VERSION...]   # suite on Bash 4.2 → 5.3 (Docker)
 ```
 
 ## Regenerating the GIF
@@ -101,7 +101,7 @@ bash test_versions.sh [--runs N] [--jobs N] [VERSION...]   # suite on Bash 4.2 �
 Requires [asciinema](https://asciinema.org) and [agg](https://github.com/asciinema/agg).
 
 ```bash
-bash make_gif.sh       # records demos 1 3 4 9 14 into docs/demo.gif
+bash scripts/make_gif.sh       # records demos 1 3 4 9 14 into docs/demo.gif
 ```
 
 ## Requirements

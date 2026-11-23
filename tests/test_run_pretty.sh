@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 #
 # Test suite for run_pretty.sh — one test per condition/branch in the function.
-# Pure-bash (no bats). Run: bash test_run_pretty.sh
+# Pure-bash (no bats). Run: bash tests/test_run_pretty.sh
 #
 # Tests run with stdout NOT a tty (output is captured), so they exercise the
 # non-tty code paths. Each test asserts on exit code and/or captured output.
 
 set -u
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=run_pretty.sh
-source "${SCRIPT_DIR}/run_pretty.sh"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# shellcheck source=SCRIPTDIR/../run_pretty.sh
+source "${ROOT_DIR}/run_pretty.sh"
 
 pass=0
 fail=0

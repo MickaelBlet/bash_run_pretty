@@ -24,9 +24,9 @@ rp_run [--jobs N] [--fail-fast] [--max-lines N] [--min-lines N] \
 rp_reset   # clear the registry (rp_run clears it when done)
 
 # Demos / tests
-bash demos.sh [N...]
-bash test_run_pretty.sh
-bash test_versions.sh [--runs N] [--jobs N] [VERSION...]   # Docker bash:<v> images, 4.2 → 5.3
+bash examples/demos.sh [N...]
+bash tests/test_run_pretty.sh
+bash tests/test_versions.sh [--runs N] [--jobs N] [VERSION...]   # Docker bash:<v> images, 4.2 → 5.3
 ```
 
 Options (all accept `--opt VALUE` and `--opt=VALUE`):
@@ -51,7 +51,7 @@ Options (all accept `--opt VALUE` and `--opt=VALUE`):
 
 ## Constraints
 
-- Must run on Bash 4.2+: no namerefs (`local -n`, 4.3), no `EPOCHREALTIME` directly (use `_rp_now_us`), no bare `read -t` on data fds (use `_rp_read_timed`). Test with `bash test_versions.sh` (use `--runs 3` to catch races).
+- Must run on Bash 4.2+: no namerefs (`local -n`, 4.3), no `EPOCHREALTIME` directly (use `_rp_now_us`), no bare `read -t` on data fds (use `_rp_read_timed`). Test with `bash tests/test_versions.sh` (use `--runs 3` to catch races).
 - All code must be valid under `set -euo pipefail`. Write it so it runs clean with strict mode (no unset-variable errors, no unguarded non-zero exits, no broken pipes).
 - Use `[[ ... ]]` for all conditionals; never `[ ... ]`.
 - Code must pass `shellcheck` with no warnings.

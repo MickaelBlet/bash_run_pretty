@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------------
-# make_gif.sh  –  Record a selection of demos.sh and render docs/demo.gif
+# scripts/make_gif.sh  –  Record a selection of examples/demos.sh and render docs/demo.gif
 #
-#   bash make_gif.sh
+#   bash scripts/make_gif.sh
 #
 # Requires: asciinema (pip install asciinema), agg (cargo install agg)
 # ------------------------------------------------------------------------------
 
 set -euo pipefail
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 readonly DEMOS="1 3 4 9 14"
 readonly COLUMNS_COUNT=80
@@ -22,7 +22,7 @@ COLUMNS="${COLUMNS_COUNT}"
 
 # Recorded inside asciinema: fake a prompt, "type" the command, then run it.
 play() {
-    local demo_command="bash demos.sh $DEMOS"
+    local demo_command="bash examples/demos.sh $DEMOS"
     local i
     printf '%s' "$PROMPT"
     sleep 0.5
@@ -33,7 +33,7 @@ play() {
     sleep 0.4
     printf '\n'
     # shellcheck disable=SC2086  # DEMOS is meant to split into arguments
-    bash demos.sh $DEMOS
+    bash examples/demos.sh $DEMOS
     printf '%s' "$PROMPT"
     sleep 1
 }
@@ -59,7 +59,7 @@ mkdir -p docs
 
 asciinema rec --quiet --overwrite \
     --cols "$COLUMNS_COUNT" --rows "$ROWS_COUNT" \
-    --command "bash make_gif.sh --play" \
+    --command "bash scripts/make_gif.sh --play" \
     "$CAST_FILE"
 
 agg --theme monokai --font-size 16 --idle-time-limit 1.5 --speed 1.2 --last-frame-duration 4 \
